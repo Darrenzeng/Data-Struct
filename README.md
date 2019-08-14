@@ -1,16 +1,20 @@
 #include<stdio.h>
 #define maxsize 100 
+
 //图的顺序存储结构 
 typedef struct{
 	int No;
 }vertextype;
+
 typedef struct{
 	int edges[maxsize][maxsize];
 	vertextype vex[maxsize];
 	int n,e;
 }MGraph;
+
 int v[maxsize];
 //取顶点 
+
 int get_top(int p)
 {
 	while(p!=v[p])
@@ -22,6 +26,7 @@ int get_top(int p)
  	int w;
  }Road;
  Road road[maxsize];
+ 
  void kruscal(Road road[],int &sum,MGraph g)
  {
  	int a,b;
@@ -41,4 +46,5 @@ int get_top(int p)
 	  		sum+=road[i].w;
 		  }
 	  }
+	return;
  }
