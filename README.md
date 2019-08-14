@@ -28,11 +28,12 @@ int get_top(int p)
  Road road[maxsize];
  
  void kruscal(Road road[],int &sum,MGraph g)
+ 
  {
  	int a,b;
 	 sum=0;
 	 for(int i=0;i<g.n;++i)
-	 {
+ {
 	 	v[i]=i;
 	  } 
 	  sort(road,g.e);//sort（）函数将road数组按照边权值进行从小到大排列 
@@ -44,7 +45,7 @@ int get_top(int p)
 	  	{
 	  		v[a]=b;
 	  		sum+=road[i].w;
-		  }
-	  }
+                 }
+ }
 	return;
  }
