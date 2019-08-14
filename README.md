@@ -1,4 +1,6 @@
-#include <stdio.h>
+#include<stdio.h>
+#define maxsize 100 
+//图的顺序存储结构 
 typedef struct{
 	int No;
 }vertextype;
@@ -7,54 +9,36 @@ typedef struct{
 	vertextype vex[maxsize];
 	int n,e;
 }MGraph;
-
-typedef struct{
-	int cidx;
-	struct arcnode *next;
-}arcnode;
-typedef struct{
-	int data;
-	arcnode *first;
-}vnode; 
-typedef struct
+int v[maxsize];
+//取顶点 
+int get_top(int p)
 {
-	vnode adjlist[maxsize];
-	int n,e;
-}AGraph;
-
-void Prim(MGraph g,int v0,int &sum)
-{
-	int i,v,k,min;
-	int visit[maxsize];
-	int lowcast[maxsize];
-	
-	for(i=0;i<g.n;++i)
-	{
-		lowcast[i]=g.edges[v0][i];
-		visit[i]=0;
-	}
-	visit[v0]=1;
-	v=v0;
-	sum=0;
-	for(i=0;i<g.n-1;++i)
-	{
-		min=INF;//N定义为无限大（比矩阵中所有边的权值都大）
-		for(int j=0;j<g.n;++j)
-		{
-			if(visit[j]==0&&min>lowcast[j])
-			{
-				min=lowcast[j];
-				v=j;
-			}
-		 } 
-		visit[v]=1;
-		sum+=min;
-		for(int j=0;j<g.n;++j)
-		{
-			if(visit[j]==0&&lowcast[j]>g.edges[v][j])
-			lowcast[j]=g.edges[v][j];
-		}
-		
-	}
-}# Data-Struct
-Graduate student
+	while(p!=v[p])
+	p=v[p];
+	return p; 
+ } 
+ typedef struct{
+ 	int a,b;
+ 	int w;
+ }Road;
+ Road road[maxsize];
+ void kruscal(Road road[],int &sum,MGraph g)
+ {
+ 	int a,b;
+	 sum=0;
+	 for(int i=0;i<g.n;++i)
+	 {
+	 	v[i]=i;
+	  } 
+	  sort(road,g.e);//sort（）函数将road数组按照边权值进行从小到大排列 
+	  for(int j=0;j<g.e;++j)
+	  {
+	  	a=get_top(road[i].a);
+	  	b=get_top(road[i].b);
+	  	if(a!=b)
+	  	{
+	  		v[a]=b;
+	  		sum+=road[i].w;
+		  }
+	  }
+ }
